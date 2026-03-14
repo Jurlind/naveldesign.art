@@ -1,0 +1,61 @@
+backend:
+  name: github
+  repo: Jurlind/naveldesign.com
+  branch: main
+  auth_endpoint: api/auth
+
+media_folder: public/images
+public_folder: /images
+
+i18n:
+  structure: multiple_folders
+  locales: [en, sq, de, it]
+  default_locale: en
+
+collections:
+  - name: pages
+    label: Pages
+    i18n: true
+    files:
+      - name: about
+        label: About
+        i18n: true
+        file: src/content/{{locale}}/about.md
+        fields:
+          - { name: title, label: Title, widget: string, i18n: true }
+          - { name: description, label: Description, widget: string, i18n: true }
+          - { name: image, label: Image, widget: image, i18n: duplicate }
+          - { name: body, label: Body, widget: markdown, i18n: true }
+
+      - name: portfolio
+        label: Portfolio
+        i18n: true
+        file: src/content/{{locale}}/portfolio.md
+        fields:
+          - { name: title, label: Title, widget: string, i18n: true }
+          - { name: description, label: Description, widget: string, i18n: true }
+          - { name: body, label: Body, widget: markdown, i18n: true }
+
+      - name: contact
+        label: Contact
+        i18n: true
+        file: src/content/{{locale}}/contact.md
+        fields:
+          - { name: title, label: Title, widget: string, i18n: true }
+          - { name: description, label: Description, widget: string, i18n: true }
+          - { name: body, label: Body, widget: markdown, i18n: true }
+
+  - name: portfolio_items
+    label: Portfolio Items
+    folder: src/content/portfolio
+    create: true
+    i18n:
+      structure: multiple_folders
+      locales: [en, sq, de, it]
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: description, label: Description, widget: text, i18n: true }
+      - { name: image, label: Image, widget: image }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: category, label: Category, widget: select, options: ["Furniture", "Accessories", "Custom"] }
+      - { name: body, label: Details, widget: markdown, i18n: true }

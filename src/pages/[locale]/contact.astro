@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LanguageSelector from '../../components/LanguageSelector.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'sq' } },
+    { params: { locale: 'de' } },
+    { params: { locale: 'it' } },
+  ];
+}
+
+interface Props {
+  params: {
+    locale: string;
+  };
+}
+
+const { locale } = Astro.props.params;
+
+const translations = {
+  en: {
+    title: 'Contact',
+    directContact: 'Get In Touch',
+    email: 'Email',
+    phone: 'Phone',
+    address: 'Address',
+    hours: 'Hours',
+    follow: 'Follow Us',
+    businessHours: 'Monday - Sunday',
+    businessHoursTime: '09:00 - 17:00',
+  },
+  sq: {
+    title: 'Kontakt',
+    directContact: 'Na Kontaktoni',
+    email: 'Email',
+    phone: 'Telefon',
+    address: 'Adresa',
+    hours: 'Orët',
+    follow: 'Na Ndiqni',
+    businessHours: 'E hënë - E diel',
+    businessHoursTime: '09:00 - 17:00',
+  },
+  de: {
+    title: 'Kontakt',
+    directContact: 'Kontaktieren Sie uns',
+    email: 'E-Mail',
+    phone: 'Telefon',
+    address: 'Adresse',
+    hours: 'Öffnungszeiten',
+    follow: 'Folgen Sie uns',
+    businessHours: 'Montag - Sonntag',
+    businessHoursTime: '09:00 - 17:00',
+  },
+  it: {
+    title: 'Contatti',
+    directContact: 'Contattaci',
+    email: 'Email',
+    phone: 'Telefono',
+    address: 'Indirizzo',
+    hours: 'Orari',
+    follow: 'Seguici',
+    businessHours: 'Lunedì - Domenica',
+    businessHoursTime: '09:00 - 17:00',
+  },
+};
+
+const t = translations[locale as keyof typeof translations] || translations.en;
+---
+
+<BaseLayout locale={locale} title={t.title}>
+  <div class="header-nav">
+    <LanguageSelector currentLocale={locale} currentPath={`/${locale}/contact`} />
+  </div>
+
+  <h1>{t.directContact}</h1>
+
+  <div class="contact-container">
+    <div class="contact-info">
+      <div class="info-item">
+        <strong>{t.email}</strong>
+        <a href="mailto:artanbasha@gmail.com">artanbasha@gmail.com</a>
+      </div>
+
+      <div class="info-item">
+        <strong>{t.phone}</strong>
+        <a href="tel:+355692033017">+355 692033017</a>
+      </div>
+
+      <div class="info-item">
+        <strong>{t.address}</strong>
+        <p>Rruga Hasan Qosja 53<br />Tirana, Albania</p>
+      </div>
+
+      <div class="info-item">
+        <strong>{t.hours}</strong>
+        <p>{t.businessHours}<br />{t.businessHoursTime}</p>
+      </div>
+
+      <div class="info-item">
+        <strong>{t.follow}</strong>
+        <div class="social-links">
+          <a href="https://facebook.com/NavelArtDesign" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://instagram.com/navel.design" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .header-nav {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .contact-container {
+    max-width: 600px;
+    margin-top: 2rem;
+  }
+
+  .contact-info {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .info-item {
+    margin-bottom: 2rem;
+  }
+
+  .info-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .info-item strong {
+    display: block;
+    color: var(--color-accent);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .info-item a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .info-item a:hover {
+    text-decoration: underline;
+  }
+
+  .info-item p {
+    color: var(--color-primary);
+    margin: 0;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-links a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    font-weight: 600;
+  }
+
+  .social-links a:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+  }
+</style>

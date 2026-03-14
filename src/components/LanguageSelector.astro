@@ -1,0 +1,70 @@
+---
+interface Props {
+  currentLocale: string;
+  currentPath: string;
+}
+
+const { currentLocale, currentPath } = Astro.props;
+
+const locales = [
+  { code: 'en', name: 'English', flag: '🇬🇧' },
+  { code: 'sq', name: 'Shqip', flag: '🇦🇱' },
+  { code: 'de', name: 'Deutsch', flag: '🇩🇪' },
+  { code: 'it', name: 'Italiano', flag: '🇮🇹' },
+];
+
+const getPathForLocale = (locale: string) => {
+  const pathWithoutLocale = currentPath.replace(/^\/(en|sq|de|it)/, '');
+  return locale === 'en' ? pathWithoutLocale || '/' : `/${locale}${pathWithoutLocale || ''}`;
+};
+---
+
+<div class="language-selector">
+  {locales.map((locale) => (
+    <a
+      href={getPathForLocale(locale.code)}
+      class={`lang-link ${currentLocale === locale.code ? 'active' : ''}`}
+      title={locale.name}
+    >
+      <span class="flag">{locale.flag}</span>
+      <span class="lang-name">{locale.code.toUpperCase()}</span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .language-selector {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .lang-link {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    color: var(--color-light);
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-size: 0.9rem;
+  }
+
+  .lang-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .lang-link.active {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+  }
+
+  .flag {
+    font-size: 1.2rem;
+  }
+
+  .lang-name {
+    font-weight: 600;
+  }
+</style>
