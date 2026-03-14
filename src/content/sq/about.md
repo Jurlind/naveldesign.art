@@ -1,33 +1,47 @@
 ---
-title: "Artan Basha - Zetar master në mobilje"
-description: "Prodhues inovativ i mobiljes që specializohet në copat drusore të punuara dorazi"
+title: "Rreth"
+description: "Rreth Artan Basha, zetar master në mobilje"
 image: "https://res.cloudinary.com/demo/image/fetch/w_500/https://www.homofaber.com/media/filer_public/2e/5a/2e5acf9c-5ef3-4c9b-a2b8-8f7d9c0e1a2b/artan-basha.jpg"
 ---
 
 ## Rreth Artan Basha
 
-Artan është një zetar inovativ i mobiljes i bazuar në Tiranë, Shqipëri, i cili përzien përgatitjen artistike me zënien dorazi të drurit të vetë-mësuar. Pas atij që ndoqi Liçeun Artistik të Pikturës, përshkrimet e drejtuan atë në thirrjen e tij të vërtetë—zetura kreative e drurit.
+Artan Basha zhvilloi pasionin e tij artistik përmes studimit formal në Liçeun Artistik të Pikturës përpara se të vazhdonte me Financë dhe Teknologji Ushqimore. Tranzicioni i tij në zejtarinë e drurit erdhi përmes mësimit të pavarur përmes burimeve online. Ai themeloi një workshop të njohur në Tiranë që tërheq projekte nga arkitektët dhe dizajnerët e brendshëm.
 
-### Aftësitë
+Filozofia e tij përqendrohet në sjelljen e natyrës brenda shtëpisë. Siç shpjegon: "Format e pasura të skajeve të drurit i japin tavolinave, stolëve, rafteve dhe akcente të tjera të dhomës një cilësi skulpturale." Ai beson se njerëzit duhet të përpiqen për hapësira të jetesës miqësore ndaj natyrës pasi shumicë  e kohës e kalojnë brenda shtëpisë.
 
-- Mobilje drusore të punuara dorazi nga materiale natyrale
-- Tavolina, stola, rafti dhe akçente drusore skulpturale
-- Përfundime të larta me vaj druri organic
-- Specializohet në orë, selino dhe lloje vendase të drurit
-- Puna është shumë e kërkuar nga arkitektët dhe dizajnerët e brendshëm
+**Karriera:** Filloi në 2013 | Filloi të mësonte në 2019
 
-### Vepra të shquara
+---
 
-- Tattoobench (vepra nënshkrim)
-- Pjata me kulm druri në selino
-- Tabela me orë
-- Pasqyrë masive me orë
-- Sfumator dore me druri
+## Me fjalët e Tij
 
-### Karriera
+### Krijimi i Parë
+Një pjatë drusore ovale, e punuar dorazi nga degë të ullirit të dhe të ruajtur nga gruaja e tij—shënimi i fillimit të udhëtimit të tij në zejtarinë e drurit.
 
-- **Filloi:** 2013
-- **Mësimdhënie:** Që nga 2019
-- **Gjuhët:** Shqiptar, Gjermanisht, Anglisht, Italisht
+### Frymëzimi Krijues
+"Më pëlqen që shumëllojshmëria natyrale në modelet që krijon uniformitet të pastër," vëren ai. Çdo pemë dhe degë ka dizajne natyrale unike që frymëzojnë punën e tij.
 
-Të gjitha copat janë punuara me vëmendje të madhe dhe përfunduar me trajtim organic që thekson bukurinë natyrale të drurit.
+### Teknika Më e Përqaruart
+"Hapi i fundit i procesit, i cili është përfundimi i drurit." Këtu ai vëzhgon karakterin e drurit dhe aplikon vaj natyral për të theksuar bukurinë e tij dhe për të nxjerr në pah cilësitë unike të tij.
+
+### Një Moment Memorabil
+Një përvojë e vështirë kur një klient kërkoi blerjën e pjesëve me rëndësi emocionale që ai kishte krijuar vetëm për ekspozitë. Puna ishte aq personalisht e rëndësishme sa shkëputja me ato ndehej si të ishte "ndarë" nga ato.
+
+---
+
+## Vepra të veçanta
+
+- **Stol tatuazhesh:** Stol i ngurtë i drurit me modele të ardhura në gdhendë—një vepër nënshkrimi që përfaqëson vite të shkëlqyeshmërisë në zejtari
+
+- **Pjata të Drurit të Lisit:** Specifikë të lisit me dizajne festive, të përfunduar me vaj të sigurt për ushqim për më shumë bukuri dhe funksionalitet
+
+- **Tabela të Drurit të Arrës:** Komisione të vetme-pjesësh të arrës europiane me përfundim organik, të kërkuara nga koleksionistë dhe dizajnerë
+
+- **Pasqyrë të Masiv të Arrës:** Korniza nga një pemë më të vjetër se 50+ vjet, me ngjyrosje karakteristike të zezë që flet për moshën dhe karakterin
+
+- **Tavëll purosh:** Druri i arrës i gdhendur dorazi, që demonstron saktësinë e tij në punë detajesh
+
+---
+
+Të gjitha pjesët janë punuar me vëmendje të veçant ndaj detajeve dhe të përfunduar me trajtime organike që theksojnë bukurinë natyrale të drurit.

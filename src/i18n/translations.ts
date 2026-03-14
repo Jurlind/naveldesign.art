@@ -18,7 +18,7 @@ export const translations = {
     followUs: 'Follow Us',
   },
   sq: {
-    home: 'Shtëpia',
+    home: 'Ballina',
     portfolio: 'Portofoli',
     about: 'Rreth',
     contact: 'Kontakt',
@@ -26,7 +26,7 @@ export const translations = {
     selectLanguage: 'Zgjidh Gjuhën',
     email: 'Email',
     phone: 'Telefon',
-    location: 'Lokacioni',
+    location: 'Vendndodhja',
     sendMessage: 'Dërgo Mesazh',
     name: 'Emri',
     emailAddress: 'Adresa Email',

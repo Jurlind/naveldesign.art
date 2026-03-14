@@ -1,11 +1,23 @@
 ---
+import LanguageSelector from '../components/LanguageSelector.astro';
+
 interface Props {
   title?: string;
   description?: string;
   locale: string;
+  currentPath?: string;
 }
 
-const { title = "Navel Design - Artan Basha", description = "Master Furniture Craftsman", locale } = Astro.props;
+const { title = "Navel Design - Artan Basha", description = "Master Furniture Craftsman", locale, currentPath = "/" } = Astro.props;
+
+const menuTranslations = {
+  en: { home: 'Home', about: 'About', portfolio: 'Portfolio', contact: 'Contact' },
+  sq: { home: 'Ballina', about: 'Rreth nesh', portfolio: 'Portofoli', contact: 'Kontakt' },
+  de: { home: 'Startseite', about: 'Über uns', portfolio: 'Portfolio', contact: 'Kontakt' },
+  it: { home: 'Home', about: 'Chi Siamo', portfolio: 'Portfolio', contact: 'Contatti' },
+};
+
+const menu = menuTranslations[locale as keyof typeof menuTranslations] || menuTranslations.en;
 ---
 
 <!doctype html>
@@ -44,17 +56,32 @@ const { title = "Navel Design - Artan Basha", description = "Master Furniture Cr
       header {
         background-color: var(--color-primary);
         color: var(--color-light);
-        padding: 2rem 0;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-top {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.5rem 2rem;
+        display: flex;
+        justify-content: flex-end;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       nav {
         max-width: 1200px;
         margin: 0 auto;
-        padding: 0 2rem;
+        padding: 1rem 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+      }
+
+      .header-bottom {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.5rem 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .logo {
@@ -125,13 +152,16 @@ const { title = "Navel Design - Artan Basha", description = "Master Furniture Cr
   </head>
   <body>
     <header>
+      <div class="header-top">
+        <LanguageSelector currentLocale={locale} currentPath={currentPath} />
+      </div>
       <nav>
         <div class="logo">NAVEL DESIGN</div>
         <ul class="nav-links">
-          <li><a href={`/${locale}`}>Home</a></li>
-          <li><a href={`/${locale}/about`}>About</a></li>
-          <li><a href={`/${locale}/portfolio`}>Portfolio</a></li>
-          <li><a href={`/${locale}/contact`}>Contact</a></li>
+          <li><a href={`/${locale}`}>{menu.home}</a></li>
+          <li><a href={`/${locale}/about`}>{menu.about}</a></li>
+          <li><a href={`/${locale}/portfolio`}>{menu.portfolio}</a></li>
+          <li><a href={`/${locale}/contact`}>{menu.contact}</a></li>
         </ul>
       </nav>
     </header>

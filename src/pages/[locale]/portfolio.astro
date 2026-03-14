@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PortfolioGrid from '../../components/PortfolioGrid.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'sq' } },
+    { params: { locale: 'de' } },
+    { params: { locale: 'it' } },
+  ];
+}
+
+const { locale } = Astro.params;
+
+const translations = {
+  en: {
+    title: 'Portfolio',
+    description: 'Discover our latest works and creations',
+    craftedWorks: 'Crafted Works',
+  },
+  sq: {
+    title: 'Portofoli',
+    description: 'Zbuloni veprat dhe krijimeve më të reja',
+    craftedWorks: 'Vepra të Punuara',
+  },
+  de: {
+    title: 'Portfolio',
+    description: 'Entdecken Sie unsere neuesten Werke und Kreationen',
+    craftedWorks: 'Handwerkliche Arbeiten',
+  },
+  it: {
+    title: 'Portfolio',
+    description: 'Scopri i nostri ultimi lavori e creazioni',
+    craftedWorks: 'Lavori Realizzati',
+  },
+};
+
+const t = translations[locale as keyof typeof translations] || translations.en;
+---
+
+<BaseLayout locale={locale} title={`${t.title} | Navel Design`} currentPath={`/${locale}/portfolio`}>
+  <article class="portfolio-page">
+    <div class="portfolio-header">
+      <h1>{t.title}</h1>
+      <p class="subtitle">{t.description}</p>
+    </div>
+
+    <section class="portfolio-section">
+      <h2>{t.craftedWorks}</h2>
+      <PortfolioGrid locale={locale} />
+    </section>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .portfolio-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .portfolio-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .portfolio-header h1 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+  }
+
+  .portfolio-header .subtitle {
+    color: var(--color-secondary);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .portfolio-section {
+    margin-bottom: 3rem;
+  }
+
+  .portfolio-section h2 {
+    color: var(--color-primary);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .portfolio-header h1 {
+      font-size: 2rem;
+    }
+  }
+</style>

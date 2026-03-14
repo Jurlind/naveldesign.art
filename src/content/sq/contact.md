@@ -7,11 +7,11 @@ description: "Na kontaktoni - Artan Basha"
 
 ## Na Kontaktoni
 
-Nós jua pëlqente të dëgjojmë! Nëse keni pyetje për punën tonë ose dëshironi të diskutoni një projekt të personalizuar, mos ngurroni të na kontaktoni.
+Do të na pëlqente shumë të dëgjonim nga ju! Nëse keni pyetje për punën tonë ose dëshironi të diskutoni një projekt të personalizuar, mos ngurroni të na kontaktoni.
 
 ### Kontakt i Drejtpërdrejtë
 
-- **Email:** artanbasha@gmail.com
+- **Email:** hello@naveldesign.com
 - **Telefon:** +355 692033017
 - **Lokacioni:** Rruga Hasan Qosja 53, Tiranë, Shqipëri
 
@@ -21,7 +21,7 @@ Nós jua pëlqente të dëgjojmë! Nëse keni pyetje për punën tonë ose dësh
 
 ### Gjuhët
 
-Flasim: Shqiptar, Gjermanisht, Anglisht, Italisht
+Flasim: Shqip, Gjermanisht, Anglisht, Italisht
 
 ### Na Ndiqni
 

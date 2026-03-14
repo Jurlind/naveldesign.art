@@ -1,20 +1,15 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import LanguageSelector from '../../components/LanguageSelector.astro';
 
 export function getStaticPaths() {
   return [
     { params: { locale: 'en', page: 'about' } },
-    { params: { locale: 'en', page: 'portfolio' } },
     { params: { locale: 'en', page: 'contact' } },
     { params: { locale: 'sq', page: 'about' } },
-    { params: { locale: 'sq', page: 'portfolio' } },
     { params: { locale: 'sq', page: 'contact' } },
     { params: { locale: 'de', page: 'about' } },
-    { params: { locale: 'de', page: 'portfolio' } },
     { params: { locale: 'de', page: 'contact' } },
     { params: { locale: 'it', page: 'about' } },
-    { params: { locale: 'it', page: 'portfolio' } },
     { params: { locale: 'it', page: 'contact' } },
   ];
 }
@@ -26,26 +21,24 @@ interface Props {
   };
 }
 
-const { locale, page } = Astro.props.params;
+const { locale, page } = Astro.params;
 
-let content = '';
+let Content: any;
 let title = '';
 
 try {
   const pageData = await import(`../../content/${locale}/${page}.md`);
-  content = pageData.default;
+  Content = pageData.default;
   title = pageData.frontmatter?.title || 'Page';
 } catch (e) {
+  console.error('Failed to load page:', e);
   return new Response('Page not found', { status: 404 });
 }
 ---
 
-<BaseLayout locale={locale} title={`${title} | Navel Design`}>
-  <div class="header-nav">
-    <LanguageSelector currentLocale={locale} currentPath={`/${locale}/${page}`} />
-  </div>
+<BaseLayout locale={locale} title={`${title} | Navel Design`} currentPath={`/${locale}/${page}`}>
   <article class="page-content">
-    <content.Component />
+    <Content />
   </article>
 </BaseLayout>
 

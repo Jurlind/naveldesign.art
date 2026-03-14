@@ -11,7 +11,7 @@ Non vediamo l'ora di sentirti! Che tu abbia domande sul nostro lavoro o voglia d
 
 ### Contatto Diretto
 
-- **Email:** artanbasha@gmail.com
+- **Email:** hello@naveldesign.com
 - **Telefono:** +355 692033017
 - **Ubicazione:** Rruga Hasan Qosja 53, Tirana, Albania
 

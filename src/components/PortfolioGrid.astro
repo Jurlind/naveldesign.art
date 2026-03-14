@@ -1,0 +1,131 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  locale: string;
+  featured?: boolean;
+}
+
+const { locale, featured = false } = Astro.props as Props;
+
+// Get all portfolio items
+const portfolioFiles = import.meta.glob('../../content/portfolio/*/**.md', { eager: true });
+
+// Filter items by locale and featured status
+const portfolioItems = Object.entries(portfolioFiles)
+  .filter(([path]) => path.includes(`/portfolio/${locale}/`))
+  .map(([, file]: [string, any]) => ({
+    ...file.frontmatter,
+    body: file.default,
+  }))
+  .filter((item: any) => !featured || item.featured)
+  .sort((a: any, b: any) => {
+    // Featured items first, then by title
+    if (a.featured !== b.featured) return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+    return a.title.localeCompare(b.title);
+  });
+---
+
+{portfolioItems.length === 0 ? (
+  <div class="no-items">
+    <p>
+      {locale === 'en' && "No portfolio items yet. Check back soon!"}
+      {locale === 'sq' && "Nuk ka artikuj në portofol akoma. Kontrolloni përsëri më vonë!"}
+      {locale === 'de' && "Noch keine Portfolio-Artikel. Schauen Sie später vorbei!"}
+      {locale === 'it' && "Nessun articolo di portfolio al momento. Controlla di nuovo presto!"}
+    </p>
+  </div>
+) : (
+  <div class="portfolio-grid">
+    {portfolioItems.map((item: any) => (
+      <div class="portfolio-card">
+        {item.image && (
+          <div class="portfolio-image">
+            <img src={item.image} alt={item.title} />
+          </div>
+        )}
+        <div class="portfolio-content">
+          <h3>{item.title}</h3>
+          <p class="category">{item.category}</p>
+          <p class="description">{item.description}</p>
+          {item.featured && <span class="badge">Featured</span>}
+        </div>
+      </div>
+    ))}
+  </div>
+)}
+
+<style>
+  .no-items {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--color-secondary);
+  }
+
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .portfolio-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .portfolio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .portfolio-image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: #f0f0f0;
+  }
+
+  .portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .portfolio-content {
+    padding: 1.5rem;
+  }
+
+  .portfolio-content h3 {
+    margin: 0 0 0.5rem 0;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+  }
+
+  .category {
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    text-transform: uppercase;
+  }
+
+  .description {
+    margin: 0.5rem 0;
+    color: var(--color-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--color-accent);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+</style>

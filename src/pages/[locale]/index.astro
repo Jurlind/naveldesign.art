@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import LanguageSelector from '../../components/LanguageSelector.astro';
 
 export function getStaticPaths() {
   return [
@@ -17,7 +16,7 @@ interface Props {
   };
 }
 
-const { locale } = Astro.props.params;
+const { locale } = Astro.params;
 
 const translations = {
   en: {
@@ -37,15 +36,15 @@ const translations = {
   },
   sq: {
     title: 'Navel Design',
-    subtitle: 'Zetar master në mobilje',
+    subtitle: 'Mjeshter zjetar për mobilje',
     tagline: 'Mobilje drusore të punuara dorazi nga Artan Basha',
     featured: 'Vepra të shquara',
     tattoobench: 'Tattoobench',
     tattoobenchDesc: 'Vepre nënshkrimi që përfaqëson vite të zërave dhe inovacionit',
-    walnut: 'Koleksioni i orëes',
-    walnutDesc: 'Krijime premium me orë duke përfshirë pasqyra dhe copat e personalizuara',
-    oak: 'Koleksioni i selinës',
-    oakDesc: 'Copat madhesore dhe të bukura të punuara nga druri vendor i selinës',
+    walnut: 'Koleksioni i arrës',
+    walnutDesc: 'Krijime premium me arrë duke përfshirë pasqyra dhe copat e personalizuara',
+    oak: 'Koleksioni i lisit',
+    oakDesc: 'Copat madhesore dhe të bukura të punuara nga druri vendor i lisit',
     begin: 'Filloni Projektin Tuaj',
     beginDesc: 'Keni një ide të personalizuar të mobiljes? Le ta sjellim në jetë.',
     getInTouch: 'Na Kontaktoni',
@@ -85,10 +84,7 @@ const translations = {
 const t = translations[locale as keyof typeof translations] || translations.en;
 ---
 
-<BaseLayout locale={locale} title={t.title} description={t.tagline}>
-  <div class="header-nav">
-    <LanguageSelector currentLocale={locale} currentPath={locale === 'en' ? '/' : `/${locale}`} />
-  </div>
+<BaseLayout locale={locale} title={t.title} description={t.tagline} currentPath={`/${locale}`}>
 
   <div class="hero">
     <h1>{t.title}</h1>
@@ -120,17 +116,11 @@ const t = translations[locale as keyof typeof translations] || translations.en;
   <section class="cta">
     <h2>{t.begin}</h2>
     <p>{t.beginDesc}</p>
-    <a href={locale === 'en' ? '/en/contact' : `/${locale}/contact`} class="cta-button">{t.getInTouch}</a>
+    <a href={`/${locale}/contact`} class="cta-button">{t.getInTouch}</a>
   </section>
 </BaseLayout>
 
 <style>
-  .header-nav {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-  }
-
   .hero {
     text-align: center;
     margin-bottom: 4rem;
