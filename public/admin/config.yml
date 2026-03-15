@@ -2,7 +2,9 @@ backend:
   name: github
   repo: Jurlind/naveldesign.art
   branch: main
-  auth_endpoint: api/auth
+
+site_url: https://naveldesign.art
+logo_url: https://naveldesign.art/images/logo.png
 
 media_folder: public/images
 public_folder: /images
