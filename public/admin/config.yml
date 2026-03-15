@@ -2,7 +2,8 @@ backend:
   name: github
   repo: Jurlind/naveldesign.art
   branch: main
-  auth_endpoint: https://naveldesign.art/.netlify/functions/auth
+  base_url: https://naveldesign.art
+  auth_endpoint: auth
 
 media_folder: public/images
 public_folder: /images

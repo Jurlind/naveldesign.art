@@ -4,6 +4,16 @@
   functions = "netlify/functions"
 
 [[redirects]]
+  from = "/auth"
+  to = "/.netlify/functions/auth"
+  status = 200
+
+[[redirects]]
+  from = "/callback"
+  to = "/.netlify/functions/callback"
+  status = 200
+
+[[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200

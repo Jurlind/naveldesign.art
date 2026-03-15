@@ -1,100 +1,39 @@
-const https = require('https');
-const querystring = require('querystring');
+import crypto from 'node:crypto';
 
-exports.handler = async (event) => {
-  // Handle CORS preflight
-  if (event.httpMethod === 'OPTIONS') {
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      },
-      body: '',
-    };
-  }
+const getSiteUrl = event => {
+  const protocol = event.headers['x-forwarded-proto'] || 'https';
+  const host = event.headers['x-forwarded-host'] || event.headers.host || 'naveldesign.art';
+  return `${protocol}://${host}`;
+};
 
-  // Get authorization code from request
-  const { code } = event.queryStringParameters || {};
-  
-  if (!code) {
-    return {
-      statusCode: 400,
-      body: JSON.stringify({ error: 'Missing authorization code' }),
-    };
-  }
-
+export const handler = async event => {
   const clientId = process.env.OAUTH_CLIENT_ID;
-  const clientSecret = process.env.OAUTH_CLIENT_SECRET;
 
-  if (!clientId || !clientSecret) {
-    console.error('Missing OAuth credentials in environment');
+  if (!clientId) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'OAuth credentials not configured' }),
+      body: 'Missing OAUTH_CLIENT_ID environment variable.',
     };
   }
 
-  try {
-    // Exchange code for access token with GitHub
-    const postData = querystring.stringify({
-      client_id: clientId,
-      client_secret: clientSecret,
-      code: code,
-    });
+  const provider = event.queryStringParameters?.provider || 'github';
+  const scope = event.queryStringParameters?.scope || 'repo';
+  const state = crypto.randomBytes(16).toString('hex');
+  const siteUrl = getSiteUrl(event);
+  const redirectUri = `${siteUrl}/callback`;
 
-    const options = {
-      hostname: 'github.com',
-      port: 443,
-      path: '/login/oauth/access_token',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Content-Length': Buffer.byteLength(postData),
-        Accept: 'application/json',
-      },
-    };
+  const authorizeUrl = new URL('https://github.com/login/oauth/authorize');
+  authorizeUrl.searchParams.set('client_id', clientId);
+  authorizeUrl.searchParams.set('redirect_uri', redirectUri);
+  authorizeUrl.searchParams.set('scope', scope);
+  authorizeUrl.searchParams.set('state', state);
 
-    const response = await new Promise((resolve, reject) => {
-      const req = https.request(options, (res) => {
-        let data = '';
-        res.on('data', (chunk) => {
-          data += chunk;
-        });
-        res.on('end', () => {
-          try {
-            resolve(JSON.parse(data));
-          } catch (e) {
-            reject(e);
-          }
-        });
-      });
-
-      req.on('error', (e) => {
-        reject(e);
-      });
-
-      req.write(postData);
-      req.end();
-    });
-
-    return {
-      statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(response),
-    };
-  } catch (error) {
-    console.error('Auth error:', error);
-    return {
-      statusCode: 500,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: JSON.stringify({ error: error.message }),
-    };
-  }
+  return {
+    statusCode: 302,
+    headers: {
+      Location: authorizeUrl.toString(),
+      'Cache-Control': 'no-store',
+    },
+    body: '',
+  };
 };
