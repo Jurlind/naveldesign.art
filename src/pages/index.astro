@@ -1,4 +1,23 @@
 ---
-// Redirect root to English homepage
-return Astro.redirect('/en');
+// Use client-side redirect for invisible redirect on GitHub Pages
+const redirect_url = '/en';
 ---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Navel Design</title>
+    <!-- Instant client-side redirect -->
+    <script>
+      window.location.replace('/en');
+    </script>
+    <!-- Fallback for no-JS -->
+    <meta http-equiv="refresh" content="0;url=/en" />
+    <link rel="canonical" href="https://naveldesign.art/en" />
+  </head>
+  <body>
+    <!-- Fallback content for very old browsers -->
+    <p><a href="/en">Click here if not redirected</a></p>
+  </body>
+</html>
