@@ -19,6 +19,11 @@ const menuTranslations = {
 
 const menu = menuTranslations[locale as keyof typeof menuTranslations] || menuTranslations.en;
 
+// Check if a link is active
+const isActive = (href: string) => {
+  return currentPath === href;
+};
+
 // Generate hreflang URLs
 const getPagePath = (lang: string) => {
   const pageName = currentPath.split('/').filter(Boolean).pop() || '';
@@ -119,11 +124,18 @@ const hreflangs = [
       .nav-links a {
         color: var(--color-light);
         text-decoration: none;
-        transition: color 0.3s;
+        transition: color 0.3s, border-bottom 0.3s;
+        padding-bottom: 0.25rem;
+        border-bottom: 2px solid transparent;
       }
 
       .nav-links a:hover {
         color: var(--color-accent);
+      }
+
+      .nav-links a.active {
+        color: var(--color-accent);
+        border-bottom: 2px solid var(--color-accent);
       }
 
       main {
@@ -180,17 +192,17 @@ const hreflangs = [
         <ul class="nav-links">
           {locale === 'en' ? (
             <>
-              <li><a href="/">{menu.home}</a></li>
-              <li><a href="/about">{menu.about}</a></li>
-              <li><a href="/portfolio">{menu.portfolio}</a></li>
-              <li><a href="/contact">{menu.contact}</a></li>
+              <li><a href="/" class={isActive('/') ? 'active' : ''}>{menu.home}</a></li>
+              <li><a href="/about" class={isActive('/about') ? 'active' : ''}>{menu.about}</a></li>
+              <li><a href="/portfolio" class={isActive('/portfolio') ? 'active' : ''}>{menu.portfolio}</a></li>
+              <li><a href="/contact" class={isActive('/contact') ? 'active' : ''}>{menu.contact}</a></li>
             </>
           ) : (
             <>
-              <li><a href={`/${locale}`}>{menu.home}</a></li>
-              <li><a href={`/${locale}/about`}>{menu.about}</a></li>
-              <li><a href={`/${locale}/portfolio`}>{menu.portfolio}</a></li>
-              <li><a href={`/${locale}/contact`}>{menu.contact}</a></li>
+              <li><a href={`/${locale}`} class={isActive(`/${locale}`) ? 'active' : ''}>{menu.home}</a></li>
+              <li><a href={`/${locale}/about`} class={isActive(`/${locale}/about`) ? 'active' : ''}>{menu.about}</a></li>
+              <li><a href={`/${locale}/portfolio`} class={isActive(`/${locale}/portfolio`) ? 'active' : ''}>{menu.portfolio}</a></li>
+              <li><a href={`/${locale}/contact`} class={isActive(`/${locale}/contact`) ? 'active' : ''}>{menu.contact}</a></li>
             </>
           )}
         </ul>

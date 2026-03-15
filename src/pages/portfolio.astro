@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PortfolioGrid from '../components/PortfolioGrid.astro';
+
+const locale = 'en';
+
+const translations = {
+  title: 'Portfolio',
+  description: 'Discover our latest works and creations',
+  craftedWorks: 'Crafted Works',
+};
+---
+
+<BaseLayout locale={locale} title={`${translations.title} | Navel Design`} currentPath="/portfolio">
+  <article class="portfolio-page">
+    <div class="portfolio-header">
+      <h1>{translations.title}</h1>
+      <p class="subtitle">{translations.description}</p>
+    </div>
+
+    <section class="portfolio-section">
+      <h2>{translations.craftedWorks}</h2>
+      <PortfolioGrid locale={locale} />
+    </section>
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .portfolio-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .portfolio-header h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .portfolio-header .subtitle {
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+  }
+
+  .portfolio-section h2 {
+    font-family: var(--font-serif);
+    margin-bottom: 2rem;
+  }
+</style>
