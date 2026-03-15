@@ -3,11 +3,9 @@ backend:
   repo: Jurlind/naveldesign.art
   branch: main
 
-site_url: https://naveldesign.art
-logo_url: https://naveldesign.art/images/logo.png
-
 media_folder: public/images
 public_folder: /images
+publish_mode: editorial_workflow
 
 i18n:
   structure: multiple_folders
@@ -17,35 +15,70 @@ i18n:
 collections:
   - name: pages
     label: Pages
-    i18n: true
     files:
-      - name: about
-        label: About
-        i18n: true
-        file: src/content/{{locale}}/about.md
+      - name: about_en
+        label: About (English)
+        file: src/content/en/about.md
         fields:
-          - { name: title, label: Title, widget: string, i18n: true }
-          - { name: description, label: Description, widget: string, i18n: true }
-          - { name: image, label: Image, widget: image, i18n: duplicate }
-          - { name: body, label: Body, widget: markdown, i18n: true }
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
 
-      - name: portfolio
-        label: Portfolio
-        i18n: true
-        file: src/content/{{locale}}/portfolio.md
+      - name: about_de
+        label: About (Deutsch)
+        file: src/content/de/about.md
         fields:
-          - { name: title, label: Title, widget: string, i18n: true }
-          - { name: description, label: Description, widget: string, i18n: true }
-          - { name: body, label: Body, widget: markdown, i18n: true }
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
 
-      - name: contact
-        label: Contact
-        i18n: true
-        file: src/content/{{locale}}/contact.md
+      - name: about_it
+        label: About (Italiano)
+        file: src/content/it/about.md
         fields:
-          - { name: title, label: Title, widget: string, i18n: true }
-          - { name: description, label: Description, widget: string, i18n: true }
-          - { name: body, label: Body, widget: markdown, i18n: true }
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: about_sq
+        label: About (Shqip)
+        file: src/content/sq/about.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: contact_en
+        label: Contact (English)
+        file: src/content/en/contact.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: contact_de
+        label: Contact (Deutsch)
+        file: src/content/de/contact.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: contact_it
+        label: Contact (Italiano)
+        file: src/content/it/contact.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: contact_sq
+        label: Contact (Shqip)
+        file: src/content/sq/contact.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
 
   - name: portfolio_items
     label: Portfolio Items
