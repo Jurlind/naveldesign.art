@@ -11,7 +11,7 @@ Do të na pëlqente shumë të dëgjonim nga ju! Nëse keni pyetje për punën t
 
 ### Kontakt i Drejtpërdrejtë
 
-- **Email:** hello@naveldesign.com
+- **Email:** info@naveldesign.art
 - **Telefon:** +355 692033017
 - **Lokacioni:** Rruga Hasan Qosja 53, Tiranë, Shqipëri
 

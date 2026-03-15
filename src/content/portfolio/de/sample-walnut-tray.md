@@ -6,11 +6,11 @@ featured: true
 category: Accessories
 ---
 
-Dies ist ein Beispiel-Portfolio-Element. Wenn Sie neue Portfolio-Artikel über das Decap CMS Admin-Panel (unter https://naveldesign.com/admin) hinzufügen, werden sie hier automatisch angezeigt.
+Dies ist ein Beispiel-Portfolio-Element. Wenn Sie neue Portfolio-Artikel über das Decap CMS Admin-Panel (unter https://naveldesign.art/admin) hinzufügen, werden sie hier automatisch angezeigt.
 
 ## So fügen Sie Portfolio-Artikel hinzu
 
-1. Gehen Sie zu **https://naveldesign.com/admin**
+1. Gehen Sie zu **https://naveldesign.art/admin**
 2. Melden Sie sich mit Ihrem GitHub-Konto an
 3. Klicken Sie im linken Menü auf **Portfolio-Artikel**
 4. Klicken Sie auf die Schaltfläche **Neuer Portfolio-Artikel**

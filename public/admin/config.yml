@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Jurlind/naveldesign.com
+  repo: Jurlind/naveldesign.art
   branch: main
   auth_endpoint: api/auth
 

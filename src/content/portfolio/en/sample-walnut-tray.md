@@ -6,11 +6,11 @@ featured: true
 category: Accessories
 ---
 
-This is a sample portfolio item. When you add new portfolio items through the Decap CMS admin panel (at https://naveldesign.com/admin), they will appear here automatically.
+This is a sample portfolio item. When you add new portfolio items through the Decap CMS admin panel (at https://naveldesign.art/admin), they will appear here automatically.
 
 ## How to Add Portfolio Items
 
-1. Go to **https://naveldesign.com/admin**
+1. Go to **https://naveldesign.art/admin**
 2. Log in with your GitHub account
 3. Click **Portfolio Items** in the left menu
 4. Click the **New Portfolio Item** button

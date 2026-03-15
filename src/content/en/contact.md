@@ -11,7 +11,7 @@ We'd love to hear from you! Whether you have questions about our work or want to
 
 ### Direct Contact
 
-- **Email:** hello@naveldesign.com
+- **Email:** info@naveldesign.art
 - **Phone:** +355 692033017
 - **Location:** Rruga Hasan Qosja 53, Tirana, Albania
 

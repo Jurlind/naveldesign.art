@@ -30,8 +30,8 @@ A multilingual website for master furniture craftsman Artan Basha, built with As
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/naveldesign.com.git
-   cd naveldesign.com
+   git clone https://github.com/YOUR_USERNAME/naveldesign.art.git
+   cd naveldesign.art
    ```
 
 2. **Install dependencies**
@@ -44,7 +44,7 @@ A multilingual website for master furniture craftsman Artan Basha, built with As
    - **GitHub (Decap CMS)**
      - Update `/public/admin/config.yml` with your repository:
        ```yaml
-       repo: YOUR_USERNAME/naveldesign.com
+       repo: YOUR_USERNAME/naveldesign.art
        ```
 
    - **Domain Setup (optional)**
@@ -67,11 +67,11 @@ A multilingual website for master furniture craftsman Artan Basha, built with As
 ### Deploying to GitHub Pages
 
 1. **Create GitHub Repository**
-   - Create a new public repository named `naveldesign.com` (or your domain)
+   - Create a new public repository named `naveldesign.art` (or your domain)
 
 2. **Push Code**
    ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/naveldesign.com.git
+   git remote add origin https://github.com/YOUR_USERNAME/naveldesign.art.git
    git branch -M main
    git push -u origin main
    ```
@@ -112,7 +112,7 @@ Files:
 ### File Structure
 
 ```
-naveldesign.com/
+naveldesign.art/
 ├── src/
 │   ├── pages/              # Route pages
 │   ├── layouts/            # Page layouts

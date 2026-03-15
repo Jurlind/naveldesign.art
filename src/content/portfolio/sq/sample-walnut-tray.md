@@ -6,11 +6,11 @@ featured: true
 category: Accessories
 ---
 
-Ky është një element i mostrimit të portofokut. Kur shtoni artikuj të rinj të portofokut përmes panelit administrativ të Decap CMS (në https://naveldesign.com/admin), ata do të shfaqen këtu automatikisht.
+Ky është një element i mostrimit të portofokut. Kur shtoni artikuj të rinj të portofokut përmes panelit administrativ të Decap CMS (në https://naveldesign.art/admin), ata do të shfaqen këtu automatikisht.
 
 ## Si të Shtoni Artikuj të Portofokut
 
-1. Shkoni në **https://naveldesign.com/admin**
+1. Shkoni në **https://naveldesign.art/admin**
 2. Hyruni me llogarinë tuaj të GitHub
 3. Klikoni **Artikuj të Portofokut** në mengun e majtë
 4. Klikoni butonin **Artikull i Ri i Portofokut**
