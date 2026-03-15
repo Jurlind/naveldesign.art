@@ -77,17 +77,50 @@ collections:
           - { name: description, label: Description, widget: string }
           - { name: body, label: Body, widget: markdown }
 
-  - name: portfolio_items
-    label: Portfolio Items
-    folder: src/content/portfolio
+  - name: portfolio_items_en
+    label: Portfolio Items (English)
+    folder: src/content/portfolio/en
     create: true
-    i18n:
-      structure: multiple_folders
-      locales: [en, sq, de, it]
     fields:
-      - { name: title, label: Title, widget: string, i18n: true }
-      - { name: description, label: Description, widget: text, i18n: true }
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
       - { name: image, label: Image, widget: image }
       - { name: featured, label: Featured, widget: boolean, default: false }
       - { name: category, label: Category, widget: select, options: ["Furniture", "Accessories", "Custom"] }
-      - { name: body, label: Details, widget: markdown, i18n: true }
+      - { name: body, label: Details, widget: markdown }
+
+  - name: portfolio_items_de
+    label: Portfolio Items (Deutsch)
+    folder: src/content/portfolio/de
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: image, label: Image, widget: image }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: category, label: Category, widget: select, options: ["Furniture", "Accessories", "Custom"] }
+      - { name: body, label: Details, widget: markdown }
+
+  - name: portfolio_items_it
+    label: Portfolio Items (Italiano)
+    folder: src/content/portfolio/it
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: image, label: Image, widget: image }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: category, label: Category, widget: select, options: ["Furniture", "Accessories", "Custom"] }
+      - { name: body, label: Details, widget: markdown }
+
+  - name: portfolio_items_sq
+    label: Portfolio Items (Shqip)
+    folder: src/content/portfolio/sq
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: image, label: Image, widget: image }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: category, label: Category, widget: select, options: ["Furniture", "Accessories", "Custom"] }
+      - { name: body, label: Details, widget: markdown }
