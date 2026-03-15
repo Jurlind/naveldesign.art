@@ -3,7 +3,7 @@ title: About
 description: Learn about Artan Basha, master furniture craftsman
 image: https://res.cloudinary.com/demo/image/fetch/w_500/https://www.homofaber.com/media/filer_public/2e/5a/2e5acf9c-5ef3-4c9b-a2b8-8f7d9c0e1a2b/artan-basha.jpg
 ---
-## About Artan Basha - Test
+## About Artan Basha
 
 Artan Basha developed his artistic passion through formal study at the Artistic Lyceum of Painting before pursuing Finance and Food Technology. His transition into woodworking came through self-directed learning via online resources. He established a prominent workshop in Tirana that attracts commissions from architects and interior designers.
 
