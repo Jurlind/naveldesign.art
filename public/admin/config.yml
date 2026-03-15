@@ -4,6 +4,7 @@ backend:
   branch: main
   base_url: https://naveldesign.netlify.app
   auth_endpoint: auth
+  auth_scope: public_repo
 
 media_folder: public/images
 public_folder: /images
