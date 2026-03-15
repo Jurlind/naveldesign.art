@@ -1,13 +1,9 @@
-const buildResponsePage = ({ origin, payload }) => `<!doctype html>
+const buildResponsePage = ({ payload }) => `<!doctype html>
 <html>
   <body>
     <script>
       (function() {
         function receiveMessage(event) {
-          if (event.origin !== ${JSON.stringify(origin)}) {
-            return;
-          }
-
           window.opener.postMessage(
             'authorization:github:success:' + JSON.stringify(${JSON.stringify(payload)}),
             event.origin,
@@ -18,22 +14,18 @@ const buildResponsePage = ({ origin, payload }) => `<!doctype html>
         }
 
         window.addEventListener('message', receiveMessage, false);
-        window.opener.postMessage('authorizing:github', ${JSON.stringify(origin)});
+        window.opener.postMessage('authorizing:github', '*');
       })();
     </script>
   </body>
 </html>`;
 
-const buildErrorPage = ({ origin, message }) => `<!doctype html>
+const buildErrorPage = ({ message }) => `<!doctype html>
 <html>
   <body>
     <script>
       (function() {
         function receiveMessage(event) {
-          if (event.origin !== ${JSON.stringify(origin)}) {
-            return;
-          }
-
           window.opener.postMessage(
             'authorization:github:error:' + JSON.stringify({ message: ${JSON.stringify(message)} }),
             event.origin,
@@ -44,7 +36,7 @@ const buildErrorPage = ({ origin, message }) => `<!doctype html>
         }
 
         window.addEventListener('message', receiveMessage, false);
-        window.opener.postMessage('authorizing:github', ${JSON.stringify(origin)});
+        window.opener.postMessage('authorizing:github', '*');
       })();
     </script>
   </body>
@@ -60,13 +52,12 @@ export const handler = async event => {
   const clientId = process.env.OAUTH_CLIENT_ID;
   const clientSecret = process.env.OAUTH_CLIENT_SECRET;
   const code = event.queryStringParameters?.code;
-  const origin = getSiteUrl(event);
 
   if (!clientId || !clientSecret) {
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      body: buildErrorPage({ origin, message: 'OAuth credentials are not configured on Netlify.' }),
+      body: buildErrorPage({ message: 'OAuth credentials are not configured on Netlify.' }),
     };
   }
 
@@ -74,9 +65,11 @@ export const handler = async event => {
     return {
       statusCode: 400,
       headers: { 'Content-Type': 'text/html; charset=utf-8' },
-      body: buildErrorPage({ origin, message: 'Missing GitHub authorization code.' }),
+      body: buildErrorPage({ message: 'Missing GitHub authorization code.' }),
     };
   }
+
+  const origin = getSiteUrl(event);
 
   const redirectUri = `${origin}/callback`;
 
@@ -101,7 +94,6 @@ export const handler = async event => {
       statusCode: 500,
       headers: { 'Content-Type': 'text/html; charset=utf-8' },
       body: buildErrorPage({
-        origin,
         message: tokenData.error_description || tokenData.error || 'GitHub token exchange failed.',
       }),
     };
@@ -114,7 +106,6 @@ export const handler = async event => {
       'Cache-Control': 'no-store',
     },
     body: buildResponsePage({
-      origin,
       payload: {
         token: tokenData.access_token,
         provider: 'github',
