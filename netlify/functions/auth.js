@@ -16,7 +16,6 @@ export const handler = async event => {
     };
   }
 
-  const provider = event.queryStringParameters?.provider || 'github';
   const scope = event.queryStringParameters?.scope || 'repo';
   const state = crypto.randomBytes(16).toString('hex');
   const siteUrl = getSiteUrl(event);
