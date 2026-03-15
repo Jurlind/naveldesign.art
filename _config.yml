@@ -1,0 +1,15 @@
+# Jekyll configuration - exclude Astro source files from Jekyll processing
+# This prevents Jekyll from trying to build the Astro site
+exclude:
+  - src/
+  - node_modules/
+  - dist/
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+  - astro.config.mjs
+  - .astro/
+
+# Prevent Jekyll from processing these files
+keep_files:
+  - CNAME
