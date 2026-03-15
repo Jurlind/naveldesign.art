@@ -7,11 +7,6 @@ media_folder: public/images
 public_folder: /images
 publish_mode: editorial_workflow
 
-i18n:
-  structure: multiple_folders
-  locales: [en, sq, de, it]
-  default_locale: en
-
 collections:
   - name: pages
     label: Pages
