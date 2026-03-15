@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const locale = 'en';
+const page = 'about';
+
+let Content: any;
+let title = '';
+
+try {
+  const pageData = await import(`../content/${locale}/${page}.md`);
+  Content = pageData.default;
+  title = pageData.frontmatter?.title || 'About';
+} catch (e) {
+  console.error('Failed to load page:', e);
+  return new Response('Page not found', { status: 404 });
+}
+---
+
+<BaseLayout locale={locale} title={`${title} | Navel Design`} currentPath="/about">
+  <article class="page-content">
+    <Content />
+  </article>
+</BaseLayout>
+
+<style is:global>
+  .page-content h1, .page-content h2 {
+    color: var(--color-primary);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .page-content p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .page-content ul, .page-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+</style>

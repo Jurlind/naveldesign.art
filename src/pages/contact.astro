@@ -1,59 +1,20 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
-export function getStaticPaths() {
-  return [
-    { params: { locale: 'sq' } },
-    { params: { locale: 'de' } },
-    { params: { locale: 'it' } },
-  ];
-}
+const locale = 'en';
 
-const { locale } = Astro.params;
-
-const translations = {
-  en: {
-    title: 'Contact',
-    contactUs: 'Contact us',
-    email: 'Email',
-    phone: 'Phone',
-    hours: 'Hours',
-    languages: 'Languages',
-    daily: 'Daily',
-  },
-  sq: {
-    title: 'Kontakt',
-    contactUs: 'Na kontaktoni',
-    email: 'Email',
-    phone: 'Telefon',
-    hours: 'Orët',
-    languages: 'Gjuhët',
-    daily: 'Çdo ditë',
-  },
-  de: {
-    title: 'Kontakt',
-    contactUs: 'Kontaktieren Sie Uns',
-    email: 'E-Mail',
-    phone: 'Telefon',
-    hours: 'Zeiten',
-    languages: 'Sprachen',
-    daily: 'Täglich',
-  },
-  it: {
-    title: 'Contatti',
-    contactUs: 'Contattaci',
-    email: 'Email',
-    phone: 'Telefono',
-    hours: 'Orari',
-    languages: 'Lingue',
-    daily: 'Giornaliero',
-  },
+const t = {
+  title: 'Contact',
+  contactUs: 'Contact us',
+  email: 'Email',
+  phone: 'Phone',
+  hours: 'Hours',
+  languages: 'Languages',
+  daily: 'Daily',
 };
-
-const t = translations[locale as keyof typeof translations] || translations.en;
 ---
 
-<BaseLayout locale={locale} title={t.title} currentPath={`/${locale}/contact`}>
+<BaseLayout locale={locale} title={t.title} currentPath="/contact">
 
   <h1>{t.contactUs}</h1>
 
@@ -198,19 +159,11 @@ const t = translations[locale as keyof typeof translations] || translations.en;
     height: 44px;
     background-color: var(--color-accent);
     color: var(--color-primary);
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.3s;
+    border-radius: 50%;
+    transition: background-color 0.3s;
   }
 
   .social-links a:hover {
     background-color: var(--color-secondary);
-    color: var(--color-light);
-    transform: translateY(-2px);
-  }
-
-  .social-links svg {
-    width: 20px;
-    height: 20px;
   }
 </style>

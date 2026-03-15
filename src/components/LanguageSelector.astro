@@ -14,8 +14,16 @@ const locales = [
 ];
 
 const getPathForLocale = (locale: string) => {
-  const pathWithoutLocale = currentPath.replace(/^\/(en|sq|de|it)/, '');
-  return `/${locale}${pathWithoutLocale || ''}`;
+  // Remove language prefix if present (for non-English paths)
+  const pathWithoutLocale = currentPath.replace(/^\/(sq|de|it)(?:\/|$)/, '/');
+  
+  // If target is English, return path without locale prefix
+  if (locale === 'en') {
+    return pathWithoutLocale === '/' ? '/' : pathWithoutLocale;
+  }
+  
+  // If target is non-English, add locale prefix
+  return pathWithoutLocale === '/' ? `/${locale}` : `/${locale}${pathWithoutLocale}`;
 };
 ---
 

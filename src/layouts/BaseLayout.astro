@@ -18,6 +18,23 @@ const menuTranslations = {
 };
 
 const menu = menuTranslations[locale as keyof typeof menuTranslations] || menuTranslations.en;
+
+// Generate hreflang URLs
+const getPagePath = (lang: string) => {
+  const pageName = currentPath.split('/').filter(Boolean).pop() || '';
+  if (lang === 'en') {
+    return pageName ? `/${pageName}` : '/';
+  } else {
+    return pageName ? `/${lang}/${pageName}` : `/${lang}`;
+  }
+};
+
+const hreflangs = [
+  { lang: 'en', url: `https://naveldesign.art${getPagePath('en')}` },
+  { lang: 'de', url: `https://naveldesign.art${getPagePath('de')}` },
+  { lang: 'it', url: `https://naveldesign.art${getPagePath('it')}` },
+  { lang: 'sq', url: `https://naveldesign.art${getPagePath('sq')}` },
+];
 ---
 
 <!doctype html>
@@ -27,6 +44,9 @@ const menu = menuTranslations[locale as keyof typeof menuTranslations] || menuTr
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    {hreflangs.map(h => (
+      <link rel="alternate" hreflang={h.lang} href={h.url} />
+    ))}
     <style>
       :root {
         --color-primary: #2c2416;
@@ -158,10 +178,21 @@ const menu = menuTranslations[locale as keyof typeof menuTranslations] || menuTr
       <nav>
         <div class="logo">NAVEL DESIGN</div>
         <ul class="nav-links">
-          <li><a href={`/${locale}`}>{menu.home}</a></li>
-          <li><a href={`/${locale}/about`}>{menu.about}</a></li>
-          <li><a href={`/${locale}/portfolio`}>{menu.portfolio}</a></li>
-          <li><a href={`/${locale}/contact`}>{menu.contact}</a></li>
+          {locale === 'en' ? (
+            <>
+              <li><a href="/">{menu.home}</a></li>
+              <li><a href="/about">{menu.about}</a></li>
+              <li><a href="/portfolio">{menu.portfolio}</a></li>
+              <li><a href="/contact">{menu.contact}</a></li>
+            </>
+          ) : (
+            <>
+              <li><a href={`/${locale}`}>{menu.home}</a></li>
+              <li><a href={`/${locale}/about`}>{menu.about}</a></li>
+              <li><a href={`/${locale}/portfolio`}>{menu.portfolio}</a></li>
+              <li><a href={`/${locale}/contact`}>{menu.contact}</a></li>
+            </>
+          )}
         </ul>
       </nav>
     </header>

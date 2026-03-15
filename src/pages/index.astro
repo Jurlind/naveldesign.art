@@ -1,4 +1,149 @@
 ---
-// Redirect root to English homepage
-return Astro.redirect('/en');
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const locale = 'en';
+
+const t = {
+  title: 'Navel Design',
+  subtitle: 'Master Furniture Craftsman',
+  tagline: 'Handcrafted wooden furniture by Artan Basha',
+  featured: 'Featured Work',
+  tattoobench: 'Tattoobench',
+  tattoobenchDesc: 'Signature piece representing years of craftsmanship and innovation',
+  walnut: 'Walnut Collection',
+  walnutDesc: 'Premium walnut creations including mirrors and custom pieces',
+  oak: 'Oak Collection',
+  oakDesc: 'Durable and beautiful pieces crafted from local oak wood',
+  begin: 'Begin Your Project',
+  beginDesc: 'Have a custom furniture idea? Let\'s bring it to life.',
+  getInTouch: 'Get in Touch',
+};
 ---
+
+<BaseLayout locale={locale} title={t.title} description={t.tagline} currentPath="/">
+
+  <div class="hero">
+    <h1>{t.title}</h1>
+    <p class="subtitle">{t.subtitle}</p>
+    <p>{t.tagline}</p>
+  </div>
+
+  <section class="featured-work">
+    <h2>{t.featured}</h2>
+    <div class="work-grid">
+      <div class="work-item">
+        <div class="placeholder-image">Tattoobench</div>
+        <h3>{t.tattoobench}</h3>
+        <p>{t.tattoobenchDesc}</p>
+      </div>
+      <div class="work-item">
+        <div class="placeholder-image">Walnut Pieces</div>
+        <h3>{t.walnut}</h3>
+        <p>{t.walnutDesc}</p>
+      </div>
+      <div class="work-item">
+        <div class="placeholder-image">Oak Designs</div>
+        <h3>{t.oak}</h3>
+        <p>{t.oakDesc}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <h2>{t.begin}</h2>
+    <p>{t.beginDesc}</p>
+    <a href="/contact" class="cta-button">{t.getInTouch}</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .hero h1 {
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .featured-work {
+    margin: 4rem 0;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .work-item {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+  }
+
+  .work-item:hover {
+    transform: translateY(-4px);
+  }
+
+  .placeholder-image {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, var(--color-secondary), var(--color-accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .work-item h3 {
+    padding: 1rem 1rem 0;
+    color: var(--color-primary);
+  }
+
+  .work-item p {
+    padding: 0.5rem 1rem 1rem;
+    color: var(--color-secondary);
+  }
+
+  .cta {
+    text-align: center;
+    margin: 4rem 0;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-light);
+    border-radius: 8px;
+  }
+
+  .cta h2 {
+    color: var(--color-accent);
+  }
+
+  .cta-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.75rem 2rem;
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    text-decoration: none;
+  }
+
+  .cta-button:hover {
+    background-color: var(--color-light);
+  }
+</style>
