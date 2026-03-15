@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Jurlind/naveldesign.art
   branch: main
+  auth_endpoint: /.netlify/functions/auth
 
 media_folder: public/images
 public_folder: /images
