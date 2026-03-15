@@ -9,7 +9,7 @@ export interface Props {
 const { locale, featured = false } = Astro.props as Props;
 
 // Get all portfolio items
-const portfolioFiles = import.meta.glob('../../content/portfolio/*/**.md', { eager: true });
+const portfolioFiles = import.meta.glob('../content/portfolio/*/**.md', { eager: true });
 
 // Filter items by locale and featured status
 const portfolioItems = Object.entries(portfolioFiles)
