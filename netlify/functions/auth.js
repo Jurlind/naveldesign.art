@@ -1,17 +1,23 @@
 const https = require('https');
+const querystring = require('querystring');
 
 exports.handler = async (event) => {
-  if (event.httpMethod !== 'POST') {
+  // Handle CORS preflight
+  if (event.httpMethod === 'OPTIONS') {
     return {
-      statusCode: 405,
-      body: JSON.stringify({ error: 'Method not allowed' }),
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      },
+      body: '',
     };
   }
 
-  const { code } = JSON.parse(event.body);
-  const clientId = process.env.OAUTH_CLIENT_ID;
-  const clientSecret = process.env.OAUTH_CLIENT_SECRET;
-
+  // Get authorization code from request
+  const { code } = event.queryStringParameters || {};
+  
   if (!code) {
     return {
       statusCode: 400,
@@ -19,8 +25,20 @@ exports.handler = async (event) => {
     };
   }
 
+  const clientId = process.env.OAUTH_CLIENT_ID;
+  const clientSecret = process.env.OAUTH_CLIENT_SECRET;
+
+  if (!clientId || !clientSecret) {
+    console.error('Missing OAuth credentials in environment');
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: 'OAuth credentials not configured' }),
+    };
+  }
+
   try {
-    const postData = JSON.stringify({
+    // Exchange code for access token with GitHub
+    const postData = querystring.stringify({
       client_id: clientId,
       client_secret: clientSecret,
       code: code,
@@ -32,7 +50,7 @@ exports.handler = async (event) => {
       path: '/login/oauth/access_token',
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
         'Content-Length': Buffer.byteLength(postData),
         Accept: 'application/json',
       },
@@ -45,7 +63,11 @@ exports.handler = async (event) => {
           data += chunk;
         });
         res.on('end', () => {
-          resolve(JSON.parse(data));
+          try {
+            resolve(JSON.parse(data));
+          } catch (e) {
+            reject(e);
+          }
         });
       });
 
@@ -59,11 +81,19 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(response),
     };
   } catch (error) {
+    console.error('Auth error:', error);
     return {
       statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
       body: JSON.stringify({ error: error.message }),
     };
   }
