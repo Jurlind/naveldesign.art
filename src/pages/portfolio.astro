@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PortfolioGrid from '../components/PortfolioGrid.astro';
+import PortfolioFilter from '../components/PortfolioFilter.astro';
 
 const locale = 'en';
 
@@ -8,7 +9,20 @@ const translations = {
   title: 'Portfolio',
   description: 'Discover our latest works and creations',
   craftedWorks: 'Crafted Works',
+  all: 'All',
 };
+
+// Get all portfolio items to extract categories
+const portfolioFiles = import.meta.glob('../content/portfolio/*/**.md', { eager: true });
+const portfolioItems = Object.entries(portfolioFiles)
+  .filter(([path]) => path.includes(`/portfolio/${locale}/`))
+  .map(([, file]: [string, any]) => ({
+    ...file.frontmatter,
+    body: file.default,
+  }));
+
+// Extract unique categories
+const categories = [...new Set(portfolioItems.map((item: any) => item.category))].sort();
 ---
 
 <BaseLayout locale={locale} title={`${translations.title} | Navel Design`} currentPath="/portfolio">
@@ -17,6 +31,8 @@ const translations = {
       <h1>{translations.title}</h1>
       <p class="subtitle">{translations.description}</p>
     </div>
+
+    <PortfolioFilter categories={categories} selectedCategory="" translations={translations} />
 
     <section class="portfolio-section">
       <h2>{translations.craftedWorks}</h2>

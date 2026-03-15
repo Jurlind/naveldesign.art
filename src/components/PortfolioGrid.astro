@@ -38,7 +38,7 @@ const portfolioItems = Object.entries(portfolioFiles)
 ) : (
   <div class="portfolio-grid">
     {portfolioItems.map((item: any) => (
-      <div class="portfolio-card">
+      <div class="portfolio-card visible" data-category={item.category}>
         {item.image && (
           <div class="portfolio-image">
             <img src={item.image} alt={item.title} />
@@ -73,7 +73,13 @@ const portfolioItems = Object.entries(portfolioFiles)
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+  }
+
+  .portfolio-card.visible {
+    opacity: 1;
+    display: block;
   }
 
   .portfolio-card:hover {

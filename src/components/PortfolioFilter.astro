@@ -1,0 +1,98 @@
+---
+export interface Props {
+  categories: string[];
+  selectedCategory: string;
+  translations: any;
+}
+
+const { categories, selectedCategory, translations } = Astro.props;
+---
+
+<div class="filter-container">
+  <div class="filter-group">
+    <button
+      class={`filter-btn ${selectedCategory === '' ? 'active' : ''}`}
+      data-category=""
+    >
+      {translations.all}
+    </button>
+    {categories.map((category) => (
+      <button
+        class={`filter-btn ${selectedCategory === category ? 'active' : ''}`}
+        data-category={category}
+      >
+        {category}
+      </button>
+    ))}
+  </div>
+</div>
+
+<style>
+  .filter-container {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .filter-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--color-secondary);
+    background: transparent;
+    color: var(--color-secondary);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+  }
+
+  .filter-btn:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .filter-btn.active {
+    background: var(--color-accent);
+    color: var(--color-primary);
+    border-color: var(--color-accent);
+  }
+</style>
+
+<script>
+  // Handle filter button clicks (client-side)
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+        const cards = document.querySelectorAll('.portfolio-card');
+
+        // Update active button
+        filterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Filter cards
+        cards.forEach((card) => {
+          const cardCategory = card.getAttribute('data-category');
+          if (category === '' || cardCategory === category) {
+            card.style.display = 'block';
+            // Trigger reflow for animation
+            void card.offsetWidth;
+            card.classList.add('visible');
+          } else {
+            card.classList.remove('visible');
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
+  });
+</script>

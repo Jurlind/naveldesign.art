@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PortfolioGrid from '../../components/PortfolioGrid.astro';
+import PortfolioFilter from '../../components/PortfolioFilter.astro';
 
 export function getStaticPaths() {
   return [
@@ -17,25 +18,41 @@ const translations = {
     title: 'Portfolio',
     description: 'Discover our latest works and creations',
     craftedWorks: 'Crafted Works',
+    all: 'All',
   },
   sq: {
     title: 'Portofoli',
     description: 'Zbuloni veprat dhe krijimeve më të reja',
     craftedWorks: 'Vepra të Punuara',
+    all: 'Të gjitha',
   },
   de: {
     title: 'Portfolio',
     description: 'Entdecken Sie unsere neuesten Werke und Kreationen',
     craftedWorks: 'Handwerkliche Arbeiten',
+    all: 'Alle',
   },
   it: {
     title: 'Portfolio',
     description: 'Scopri i nostri ultimi lavori e creazioni',
     craftedWorks: 'Lavori Realizzati',
+    all: 'Tutti',
   },
 };
 
 const t = translations[locale as keyof typeof translations] || translations.en;
+
+// Get all portfolio items to extract categories
+const portfolioFiles = import.meta.glob('../../content/portfolio/*/**.md', { eager: true });
+const portfolioItems = Object.entries(portfolioFiles)
+  .filter(([path]) => path.includes(`/portfolio/${locale}/`))
+  .map(([, file]: [string, any]) => ({
+    ...file.frontmatter,
+    body: file.default,
+  }));
+
+// Extract unique categories
+const categories = [...new Set(portfolioItems.map((item: any) => item.category))].sort();
 ---
 
 <BaseLayout locale={locale} title={`${t.title} | Navel Design`} currentPath={`/${locale}/portfolio`}>
@@ -44,6 +61,8 @@ const t = translations[locale as keyof typeof translations] || translations.en;
       <h1>{t.title}</h1>
       <p class="subtitle">{t.description}</p>
     </div>
+
+    <PortfolioFilter categories={categories} selectedCategory="" translations={t} />
 
     <section class="portfolio-section">
       <h2>{t.craftedWorks}</h2>
