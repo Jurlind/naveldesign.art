@@ -1,8 +1,6 @@
 backend:
-  name: github
-  repo: Jurlind/naveldesign.art
+  name: git-gateway
   branch: main
-  auth_endpoint: https://decap.cms.org/auth
 
 media_folder: public/images
 public_folder: /images
