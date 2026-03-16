@@ -1,0 +1,126 @@
+backend:
+  name: github
+  repo: Jurlind/naveldesign.art
+  branch: main
+  base_url: https://naveldesign.netlify.app
+  auth_endpoint: auth
+  auth_scope: public_repo
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: pages
+    label: Pages
+    files:
+      - name: about_en
+        label: About (English)
+        file: src/content/en/about.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: about_de
+        label: About (Deutsch)
+        file: src/content/de/about.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: about_it
+        label: About (Italiano)
+        file: src/content/it/about.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: about_sq
+        label: About (Shqip)
+        file: src/content/sq/about.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: contact_en
+        label: Contact (English)
+        file: src/content/en/contact.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: contact_de
+        label: Contact (Deutsch)
+        file: src/content/de/contact.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: contact_it
+        label: Contact (Italiano)
+        file: src/content/it/contact.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+      - name: contact_sq
+        label: Contact (Shqip)
+        file: src/content/sq/contact.md
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: description, label: Description, widget: string }
+          - { name: body, label: Body, widget: markdown }
+
+  - name: portfolio_items_en
+    label: Portfolio Items (English)
+    folder: src/content/portfolio/en
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: image, label: Image, widget: image }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: category, label: Category, widget: select, options: ["Furniture", "Accessories", "Custom"] }
+      - { name: body, label: Details, widget: markdown }
+
+  - name: portfolio_items_de
+    label: Portfolio Items (Deutsch)
+    folder: src/content/portfolio/de
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: image, label: Image, widget: image }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: category, label: Category, widget: select, options: ["Furniture", "Accessories", "Custom"] }
+      - { name: body, label: Details, widget: markdown }
+
+  - name: portfolio_items_it
+    label: Portfolio Items (Italiano)
+    folder: src/content/portfolio/it
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: image, label: Image, widget: image }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: category, label: Category, widget: select, options: ["Furniture", "Accessories", "Custom"] }
+      - { name: body, label: Details, widget: markdown }
+
+  - name: portfolio_items_sq
+    label: Portfolio Items (Shqip)
+    folder: src/content/portfolio/sq
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: description, label: Description, widget: text }
+      - { name: image, label: Image, widget: image }
+      - { name: featured, label: Featured, widget: boolean, default: false }
+      - { name: category, label: Category, widget: select, options: ["Furniture", "Accessories", "Custom"] }
+      - { name: body, label: Details, widget: markdown }
